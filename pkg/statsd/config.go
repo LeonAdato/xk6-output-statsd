@@ -1,4 +1,4 @@
-package template
+package statsd
 
 import (
 	"fmt"
@@ -7,7 +7,7 @@ import (
 	"go.k6.io/k6/output"
 )
 
-// Config is the config for the template collector
+// Config is the config for the statsd collector
 type Config struct {
 	Address      string
 	PushInterval time.Duration
@@ -16,7 +16,7 @@ type Config struct {
 // NewConfig creates a new Config instance from the provided output.Params
 func NewConfig(p output.Params) (Config, error) {
 	cfg := Config{
-		Address:      "template",
+		Address:      "statsd",
 		PushInterval: 1 * time.Second,
 	}
 

@@ -1,4 +1,4 @@
-package template
+package statsd
 
 import (
 	"encoding/json"
@@ -21,7 +21,7 @@ func TestConfig(t *testing.T) {
 	}{
 		"default": {
 			config: Config{
-				Address:      "template",
+				Address:      "statsd",
 				PushInterval: 1 * time.Second,
 			},
 		},

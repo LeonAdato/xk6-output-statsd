@@ -1,5 +1,5 @@
-// Package template performs output operations for the extension
-package template
+// Package statsd performs output operations for the extension
+package statsd
 
 import (
 	"time"
@@ -36,7 +36,7 @@ func New(p output.Params) (*Output, error) {
 
 // Description returns a human-readable description of the output that will be shown in `k6 run`
 func (o *Output) Description() string {
-	return "template: " + o.config.Address
+	return "statsd: " + o.config.Address
 }
 
 // Stop flushes all remaining metrics and finalizes the test run
@@ -72,7 +72,7 @@ func (o *Output) flushMetrics() {
 		count += len(samples)
 		for _, sample := range samples {
 			// Here we actually write or accumulate to then write in batches
-			// for the template code we just ... dump some parts of it on the screen
+			// for the statsd code we just ... dump some parts of it on the screen
 			o.logger.Infof("%s=%.5f,%s\n", sample.Metric.Name, sample.Value, sample.GetTags().Map())
 		}
 	}

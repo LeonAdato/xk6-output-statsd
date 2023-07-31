@@ -1,13 +1,13 @@
-// Package template registers the extension for output
-package template
+// Package statsd registers the extension for output
+package statsd
 
 import (
-	"github.com/grafana/xk6-output-template/pkg/template"
+	"github.com/javaducky/xk6-output-statsd/pkg/statsd"
 	"go.k6.io/k6/output"
 )
 
 func init() {
-	output.RegisterExtension("xk6-template", func(p output.Params) (output.Output, error) {
-		return template.New(p)
+	output.RegisterExtension("output-statsd", func(p output.Params) (output.Output, error) {
+		return statsd.New(p)
 	})
 }

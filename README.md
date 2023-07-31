@@ -1,4 +1,4 @@
-# xk6-output-template
+# xk6-output-statsd
 Is template for k6 output [extensions](https://k6.io/docs/extensions/guides/what-are-k6-extensions/)
 
 You should make a repo from this template and go through the code and replace everywhere where it says `template` in order to use it.
@@ -17,7 +17,7 @@ To build a `k6` binary with this extension, first ensure you have the prerequisi
 1. Build with `xk6`:
 
 ```bash
-xk6 build --with github.com/grafana/xk6-output-template
+xk6 build --with github.com/javaducky/xk6-output-statsd
 ```
 
 This will result in a `k6` binary in the current directory.
@@ -25,5 +25,5 @@ This will result in a `k6` binary in the current directory.
 2. Run with the just build `k6:
 
 ```bash
-./k6 run -o xk6-template <script.js>
+./k6 run -o xk6-statsd <script.js>
 ```

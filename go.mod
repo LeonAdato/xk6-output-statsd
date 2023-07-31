@@ -1,4 +1,4 @@
-module github.com/grafana/xk6-output-template
+module github.com/javaducky/xk6-output-statsd
 
 go 1.19
 

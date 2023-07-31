@@ -2,12 +2,13 @@ package statsd
 
 import (
 	"encoding/json"
+	"testing"
+	"time"
+
 	"github.com/stretchr/testify/require"
 	"go.k6.io/k6/lib/types"
 	"go.k6.io/k6/metrics"
 	"gopkg.in/guregu/null.v3"
-	"testing"
-	"time"
 )
 
 func TestConfig(t *testing.T) {
@@ -53,14 +54,14 @@ func TestConfig(t *testing.T) {
 		testCase := testCase
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
-			config, err := getConsolidatedConfig(testCase.jsonRaw, testCase.env, testCase.arg)
+			checkConfig, err := getConsolidatedConfig(testCase.jsonRaw, testCase.env, testCase.arg)
 			if testCase.err != "" {
 				require.Error(t, err)
 				require.Contains(t, err.Error(), testCase.err)
 				return
 			}
 			require.NoError(t, err)
-			require.Equal(t, testCase.config, config)
+			require.Equal(t, testCase.config, checkConfig)
 		})
 	}
 }

@@ -44,8 +44,8 @@ func baseTest(t *testing.T,
 			case <-end:
 				return
 			default:
-				n, _, err := listener.ReadFromUDP(buf[:])
-				require.NoError(t, err)
+				n, _, readErr := listener.ReadFromUDP(buf[:])
+				require.NoError(t, readErr)
 				ch <- string(buf[:n])
 			}
 		}

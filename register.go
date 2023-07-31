@@ -7,7 +7,5 @@ import (
 )
 
 func init() {
-	output.RegisterExtension("output-statsd", func(p output.Params) (output.Output, error) {
-		return statsd.New(p)
-	})
+	output.RegisterExtension("output-statsd", statsd.New)
 }

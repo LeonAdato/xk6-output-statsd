@@ -1,3 +1,4 @@
+// Package statsd enables real-time output of k6 test metrics to a statsd collector.
 package statsd
 
 import (

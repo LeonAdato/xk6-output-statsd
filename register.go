@@ -2,7 +2,7 @@
 package statsd
 
 import (
-	"github.com/javaducky/xk6-output-statsd/pkg/statsd"
+	"github.com/LeonAdato/xk6-output-statsd/pkg/statsd"
 	"go.k6.io/k6/output"
 )
 

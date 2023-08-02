@@ -15,7 +15,7 @@ To build a `k6` binary with this extension, first ensure you have the prerequisi
 1. Build with `xk6`:
 
 ```bash
-xk6 build --with github.com/javaducky/xk6-output-statsd
+xk6 build --with github.com/LeonAdato/xk6-output-statsd
 ```
 
 This will result in a `k6` binary in the current directory.

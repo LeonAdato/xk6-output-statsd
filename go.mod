@@ -1,4 +1,4 @@
-module github.com/LeonAdato/xk6-output-statsd
+module github.com/sidpalas/xk6-output-statsd
 
 go 1.19
 

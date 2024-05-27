@@ -15,7 +15,7 @@ To build a `k6` binary with this extension, first ensure you have the prerequisi
 1. Build with `xk6`:
 
 ```bash
-xk6 build --with github.com/LeonAdato/xk6-output-statsd
+xk6 build --with github.com/RostamKal/xk6-output-statsd
 ```
 
 This will result in a `k6` binary in the current directory.
@@ -46,7 +46,7 @@ K6_STATSD_ADDR=localhost:8125 K6_STATSD_ENABLE_TAGS=true ./k6 run -o output-stat
 
 # Testing Locally
 
-This repository includes a [docker-compose.yml](./docker-compose.yml) file that starts Graphite backed by StatsD which can be used for testing the `xk6-output-statsd` extension. 
+This repository includes a [docker-compose.yml](./docker-compose.yml) file that starts Graphite backed by StatsD which can be used for testing the `xk6-output-statsd` extension.
 
 > :warning: This environment is intended for testing only and should not be used for production purposes.
 
@@ -59,7 +59,7 @@ This repository includes a [docker-compose.yml](./docker-compose.yml) file that 
    ✔ Network xk6-output-statsd_default       Created               ...    0.0s
    ✔ Container xk6-output-statsd-graphite-1  Started               ...    0.3s
    ```
-2. Use your [custom k6 binary](#build) to run a k6 test script sending metrics to your StatsD service started ing the previous step. 
+2. Use your [custom k6 binary](#build) to run a k6 test script sending metrics to your StatsD service started ing the previous step.
    ```bash
    ./k6 run -o output-statsd examples/ramping-vus.js
    ```

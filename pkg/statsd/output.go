@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/DataDog/datadog-go/statsd"
+	"github.com/DataDog/datadog-go/v5/statsd"
 	"github.com/sirupsen/logrus"
 
 	"go.k6.io/k6/metrics"
@@ -101,15 +101,11 @@ func (o *Output) Start() error {
 		return err
 	}
 
-	o.client, err = statsd.NewBuffered(o.config.Addr.String, int(o.config.BufferSize.Int64))
+	o.client, err = statsd.New(o.config.Addr.String, statsd.WithNamespace("k6"))
 
 	if err != nil {
 		o.logger.Errorf("Couldn't make buffered client, %s", err)
 		return err
-	}
-
-	if namespace := o.config.Namespace.String; namespace != "" {
-		o.client.Namespace = namespace
 	}
 
 	pf, err := output.NewPeriodicFlusher(o.config.PushInterval.TimeDuration(), o.flushMetrics)

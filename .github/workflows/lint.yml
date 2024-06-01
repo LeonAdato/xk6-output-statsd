@@ -9,6 +9,8 @@ on:
     tags:
       - v*
   pull_request:
+    branches:
+      - main
 
 jobs:
   check-modules:
@@ -20,6 +22,7 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version: 1.22.x
+          check-latest: true
       - name: Check module dependencies
         run: |
           go version
@@ -35,13 +38,8 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version: 1.22.x
-      - name: Retrieve golangci-lint version
-        run: |
-          echo "Version=$(head -n 1 "${GITHUB_WORKSPACE}/.golangci.yml" | tr -d '# ')" >> $GITHUB_OUTPUT
-        id: version
+          check-latest: true
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v6
         with:
-          # Required: the version of golangci-lint is required and must be specified without patch version: we always use the latest patch version.
-          version: ${{ steps.version.outputs.Version }}
-          only-new-issues: true
+          version: v1.53.3

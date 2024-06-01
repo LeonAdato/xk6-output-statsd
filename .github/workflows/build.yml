@@ -9,6 +9,8 @@ on:
     tags:
       - v*
   pull_request:
+    branches:
+      - main
 
 jobs:
   build-with-xk6:
@@ -23,7 +25,7 @@ jobs:
           check-latest: true
       - name: Get module name
         run: |
-          echo "::set-output name=Module::$(go list -m)"
+          echo "Module=$(go list -m)" >> $GITHUB_OUTPUT
         id: module-name
       - name: Verify builds with xk6
         run: |

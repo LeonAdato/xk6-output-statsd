@@ -39,7 +39,13 @@ jobs:
         with:
           go-version: 1.22.x
           check-latest: true
+      - name: Retrieve golangci-lint version
+        run: |
+          echo "Version=$(head -n 1 "${GITHUB_WORKSPACE}/.golangci.yml" | tr -d '# ')" >> $GITHUB_OUTPUT
+        id: version
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v6
         with:
-          version: v1.53.3
+          # Required: the version of golangci-lint is required and must be specified without patch version: we always use the latest patch version.
+          version: ${{ steps.version.outputs.Version }}
+          only-new-issues: true

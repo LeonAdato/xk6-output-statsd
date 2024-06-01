@@ -1,6 +1,6 @@
 module github.com/LeonAdato/xk6-output-statsd
 
-go 1.21
+go 1.22
 
 require (
 	github.com/DataDog/datadog-go v0.0.0-20180330214955-e67964b4021a
@@ -24,7 +24,7 @@ require (
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/mstoykov/atlas v0.0.0-20220811071828-388f114305dd // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
-	github.com/spf13/afero v1.9.5 // indirect
+	github.com/spf13/afero v1.1.2 // indirect
 	go.opentelemetry.io/otel v1.24.0 // indirect
 	go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.24.0 // indirect
 	go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc v1.24.0 // indirect

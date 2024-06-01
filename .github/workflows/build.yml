@@ -15,11 +15,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Install Go
-        uses: actions/setup-go@v3
+        uses: actions/setup-go@v5
         with:
-          go-version: 1.21.x
+          go-version: 1.22.x
+          check-latest: true
       - name: Get module name
         run: |
           echo "::set-output name=Module::$(go list -m)"
@@ -35,8 +36,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Install Go
-        uses: actions/setup-go@v3
+        uses: actions/setup-go@v5
         with:
-          go-version: 1.21.x
+          go-version: 1.22.x
+          check-latest: true
       - name: Run unit tests
         run: go test -v -cover -race ./...

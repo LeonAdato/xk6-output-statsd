@@ -42,6 +42,8 @@ type Output struct {
 
 	logger logrus.FieldLogger
 	client *statsd.Client
+	
+	reqCounter uint64
 }
 
 func (o *Output) dispatch(entry metrics.Sample) error {
@@ -52,6 +54,15 @@ func (o *Output) dispatch(entry metrics.Sample) error {
 
 	switch entry.Metric.Type {
 	case metrics.Counter:
+		
+		if (entry.Metric.Name == "http_reqs") {
+			o.reqCounter = o.reqCounter + 1
+			if (o.reqCounter % 10000 == 0) {
+				fmt.Printf("%v\n", o.reqCounter)
+			}
+			
+			o.client.Gauge("http_req_guage", float64(o.reqCounter), tagList, 1)
+		}
 		return o.client.Count(entry.Metric.Name, int64(entry.Value), tagList, 1)
 	case metrics.Trend:
 		return o.client.TimeInMilliseconds(entry.Metric.Name, entry.Value, tagList, 1)

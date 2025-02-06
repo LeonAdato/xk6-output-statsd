@@ -11,7 +11,6 @@ import (
 	"github.com/stretchr/testify/require"
 	"gopkg.in/guregu/null.v3"
 
-	"go.k6.io/k6/lib/testutils"
 	"go.k6.io/k6/lib/types"
 	"go.k6.io/k6/metrics"
 	"go.k6.io/k6/output"
@@ -91,7 +90,7 @@ func TestInitWithoutAddressErrors(t *testing.T) {
 	t.Parallel()
 	c := &Output{
 		config: config{},
-		logger: testutils.NewLogger(t),
+		logger: logrus.New(),
 	}
 	err := c.Start()
 	require.Error(t, err)
@@ -103,7 +102,7 @@ func TestInitWithBogusAddressErrors(t *testing.T) {
 		config: config{
 			Addr: null.StringFrom("localhost:90000"),
 		},
-		logger: testutils.NewLogger(t),
+		logger: logrus.New(),
 	}
 	err := c.Start()
 	require.Error(t, err)

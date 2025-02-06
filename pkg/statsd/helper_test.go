@@ -9,7 +9,6 @@ import (
 	"github.com/stretchr/testify/require"
 	"gopkg.in/guregu/null.v3"
 
-	"go.k6.io/k6/lib/testutils"
 	"go.k6.io/k6/lib/types"
 	"go.k6.io/k6/metrics"
 )
@@ -53,7 +52,7 @@ func baseTest(t *testing.T,
 
 	pushInterval := types.NullDurationFrom(time.Millisecond * 10)
 	collector, err := getOutput(
-		testutils.NewLogger(t),
+		logrus.New(),
 		null.StringFrom(listener.LocalAddr().String()),
 		null.StringFrom(testNamespace),
 		null.IntFrom(5),

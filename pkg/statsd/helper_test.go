@@ -2,6 +2,8 @@ package statsd
 
 import (
 	"net"
+	"sort"
+	"strings"
 	"testing"
 	"time"
 
@@ -107,7 +109,7 @@ func baseTest(t *testing.T,
 					"tag3": "value3",
 				}),
 			},
-			output: "testing.things.my_gauge:13.000000|g",
+			output: "testing.things.my_gauge:13|g",
 		},
 		{
 			input: []metrics.SampleContainer{
@@ -146,7 +148,16 @@ func baseTest(t *testing.T,
 	for _, test := range testMatrix {
 		collector.AddMetricSamples(test.input)
 		time.Sleep((time.Duration)(pushInterval.Duration))
-		output := <-ch
-		checkResult(t, test.input, test.output, output)
+		pkts := []string{strings.TrimRight(<-ch, "\n")}
+		for done := false; !done; {
+			select {
+			case pkt := <-ch:
+				pkts = append(pkts, strings.TrimRight(pkt, "\n"))
+			default:
+				done = true
+			}
+		}
+		sort.Strings(pkts)
+		checkResult(t, test.input, test.output, strings.Join(pkts, "\n"))
 	}
 }

@@ -59,8 +59,8 @@ func TestStatsdEnabledTags(t *testing.T) {
 		}`, addr.String, namespace.String, bufferSize.Int64, pushInterval.Duration.String())),
 			})
 	}, func(t *testing.T, containers []metrics.SampleContainer, expectedOutput, output string) {
-		outputLines := strings.Split(output, "\n")
-		expectedOutputLines := strings.Split(expectedOutput, "\n")
+		outputLines := strings.Split(strings.TrimRight(output, "\n"), "\n")
+		expectedOutputLines := strings.Split(strings.TrimRight(expectedOutput, "\n"), "\n")
 		var lines int
 
 		for i, container := range containers {

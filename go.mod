@@ -5,7 +5,7 @@ go 1.25.0
 require (
 	github.com/DataDog/datadog-go v4.8.3+incompatible
 	github.com/mstoykov/envconfig v1.5.0
-	github.com/sirupsen/logrus v1.9.3
+	github.com/sirupsen/logrus v1.9.4
 	github.com/stretchr/testify v1.11.1
 	go.k6.io/k6 v1.7.1
 	gopkg.in/guregu/null.v3 v3.5.0

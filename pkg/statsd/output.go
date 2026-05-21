@@ -8,8 +8,8 @@ import (
 	"github.com/DataDog/datadog-go/statsd"
 	"github.com/sirupsen/logrus"
 
-	"go.k6.io/k6/metrics"
-	"go.k6.io/k6/output"
+	"go.k6.io/k6/v2/metrics"
+	"go.k6.io/k6/v2/output"
 )
 
 // New creates a new statsd connector client

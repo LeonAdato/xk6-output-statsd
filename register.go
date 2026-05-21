@@ -3,7 +3,7 @@ package statsd
 
 import (
 	"github.com/LeonAdato/xk6-output-statsd/pkg/statsd"
-	"go.k6.io/k6/output"
+	"go.k6.io/k6/v2/output"
 )
 
 func init() {

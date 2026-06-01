@@ -11,8 +11,8 @@ import (
 	"github.com/stretchr/testify/require"
 	"gopkg.in/guregu/null.v3"
 
-	"go.k6.io/k6/lib/types"
-	"go.k6.io/k6/metrics"
+	"go.k6.io/k6/v2/lib/types"
+	"go.k6.io/k6/v2/metrics"
 )
 
 type getOutputFn func(
@@ -148,13 +148,19 @@ func baseTest(t *testing.T,
 	for _, test := range testMatrix {
 		collector.AddMetricSamples(test.input)
 		time.Sleep((time.Duration)(pushInterval.Duration))
-		pkts := []string{strings.TrimRight(<-ch, "\n")}
-		for done := false; !done; {
+		expectedLineCount := len(strings.Split(test.output, "\n"))
+		var pkts []string
+		deadline := time.After(10 * (time.Duration)(pushInterval.Duration))
+		receivedLineCount := 0
+	collectLoop:
+		for receivedLineCount < expectedLineCount {
 			select {
 			case pkt := <-ch:
-				pkts = append(pkts, strings.TrimRight(pkt, "\n"))
-			default:
-				done = true
+				pkt = strings.TrimRight(pkt, "\n")
+				pkts = append(pkts, pkt)
+				receivedLineCount += len(strings.Split(pkt, "\n"))
+			case <-deadline:
+				break collectLoop
 			}
 		}
 		sort.Strings(pkts)

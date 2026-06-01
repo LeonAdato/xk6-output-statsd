@@ -11,9 +11,9 @@ import (
 	"github.com/stretchr/testify/require"
 	"gopkg.in/guregu/null.v3"
 
-	"go.k6.io/k6/lib/types"
-	"go.k6.io/k6/metrics"
-	"go.k6.io/k6/output"
+	"go.k6.io/k6/v2/lib/types"
+	"go.k6.io/k6/v2/metrics"
+	"go.k6.io/k6/v2/output"
 )
 
 func getOutput(
@@ -63,13 +63,13 @@ func TestStatsdEnabledTags(t *testing.T) {
 		expectedOutputLines := strings.Split(strings.TrimRight(expectedOutput, "\n"), "\n")
 		var lines int
 
-		for i, container := range containers {
-			for j, sample := range container.GetSamples() {
+		for _, container := range containers {
+			for _, sample := range container.GetSamples() {
 				lines++
 				var (
 					expectedTagList    = processTags(tagMap, sample.GetTags().Map())
-					expectedOutputLine = expectedOutputLines[i*j+i]
-					outputLine         = outputLines[i*j+i]
+					expectedOutputLine = expectedOutputLines[lines-1]
+					outputLine         = outputLines[lines-1]
 					outputWithoutTags  = outputLine
 					outputTagList      = []string{}
 					tagSplit           = strings.LastIndex(outputLine, "|#")

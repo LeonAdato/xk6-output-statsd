@@ -1,13 +1,13 @@
 module github.com/LeonAdato/xk6-output-statsd
 
-go 1.25.0
+go 1.26.0
 
 require (
 	github.com/DataDog/datadog-go v4.8.3+incompatible
 	github.com/mstoykov/envconfig v1.5.0
 	github.com/sirupsen/logrus v1.10.2
 	github.com/stretchr/testify v1.12.1
-	go.k6.io/k6/v2 v2.2.0
+	go.k6.io/k6/v2 v2.3.0
 	gopkg.in/guregu/null.v3 v3.5.0
 )
 
@@ -40,6 +40,6 @@ require (
 	golang.org/x/time v0.15.0 // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20260825221802-da73d73af1c5 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20260825221802-da73d73af1c5 // indirect
-	google.golang.org/grpc v1.83.2 // indirect
+	google.golang.org/grpc v1.84.0 // indirect
 	google.golang.org/protobuf v1.36.12 // indirect
 )
